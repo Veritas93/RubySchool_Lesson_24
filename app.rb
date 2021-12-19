@@ -43,21 +43,25 @@ post '/visit' do
 	@parik = params[:parik]
 	@color = params[:color]
 
-	if @users_name =''
-		@error = 'Введите имя'
+	#хэш
+	hh = { :users_name => 'Введите имя',
+		   :date_times => 'Неправильная дата и время',
+		   :phone => 'Введите Телефон'
+	}
+	# Для каждой пары ключ значение
+	hh.each do |key, value|
+		# Если параметр пуст 
+		if params[key] == ''
+			# То переменной error  присвоить значение хеш
+			# т.е. переменной error присвоить сообщение об ошибке
+			@error = hh[key]
+			# вернуть представление визит
+			return erb :visit
+		end
+
 	end
 
-	if @date_times =''
-		@error = 'Неправильная дата и время'
-	end
 
-	if @phone =''
-		@error = 'Введите Телефон'
-	end
-
-	if @error !=''
-		return erb :visit
-	end
 
 
 	@title = "Спасибо что выбрали нас!"
