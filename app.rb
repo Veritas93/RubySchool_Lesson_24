@@ -7,6 +7,7 @@ get '/' do
 end
 
 get '/about' do
+	@error = "Somethink"
 	erb :about
 end
 
@@ -41,6 +42,11 @@ post '/visit' do
 	@phone = params[:phone]
 	@parik = params[:parik]
 	@color = params[:color]
+
+	if @users_name =''
+		@error = 'Введите имя'
+		return erb :visit
+	end
 
 	@title = "Спасибо что выбрали нас!"
 	@message1 = "Dear #{@users_name}, we'll be waiting for you at #{@date_times}"
