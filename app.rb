@@ -45,8 +45,20 @@ post '/visit' do
 
 	if @users_name =''
 		@error = 'Введите имя'
+	end
+
+	if @date_times =''
+		@error = 'Неправильная дата и время'
+	end
+
+	if @phone =''
+		@error = 'Введите Телефон'
+	end
+
+	if @error !=''
 		return erb :visit
 	end
+
 
 	@title = "Спасибо что выбрали нас!"
 	@message1 = "Dear #{@users_name}, we'll be waiting for you at #{@date_times}"
